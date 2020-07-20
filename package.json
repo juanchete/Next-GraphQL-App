@@ -1,0 +1,12 @@
+{
+  "name": "graphql-curso",
+  "version": "1.0.0",
+  "description": "Curso de react y graphQl",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "author": "Juan Lopez",
+  "license": "ISC"
+}
