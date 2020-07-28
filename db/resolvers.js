@@ -19,10 +19,8 @@ const crearToken = (usuario, secreta, expiresIn) =>{
 const resolvers = {
 
     Query:{
-        obtenerUsuario: async (_,{token})=>{
-            const usuarioId = await jwt.verify(token,process.env.SECRETA)
-
-            return usuarioId
+        obtenerUsuario: async (_,{}, ctx)=>{
+            return ctx.usuario;
 
         },
         obtenerProductos: async () =>{
@@ -84,7 +82,7 @@ const resolvers = {
         },
         obtenerPedidosVendedor: async  (_,{},ctx) => {
             try {
-                const pedidos = await Pedido.find({vendedor: ctx.usuario.id})
+                const pedidos = await Pedido.find({vendedor: ctx.usuario.id}).populate('cliente')
                 return pedidos
             } catch (error) {
                 console.log(error);
@@ -177,7 +175,7 @@ const resolvers = {
             const existeUsuario = await Usuario.findOne({email});
             if (existeUsuario){
 
-                console.log('EL usuario ya existe en la BDD');
+                throw new Error('EL usuario ya esta registrado en la BDD');
             }
 
             //Hashear Password

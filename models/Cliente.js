@@ -44,4 +44,4 @@ const ClientesSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Clientes',ClientesSchema);
+module.exports = mongoose.model('Cliente',ClientesSchema);
